@@ -1,0 +1,47 @@
+---
+title: "FML Assignment1"
+output: html_document
+date: "2023-09-10"
+---
+**Considering the fifa world cup data to perfrom quatitative and qualitative variables**
+
+```{r}
+fifaworld <- read.csv("C:\\Users\\DELL\\OneDrive\\Desktop\\FIFA_World_Cup_1558_23.csv")
+fifaworld
+summary(fifaworld)
+
+# Loaded 'readr' and 'psych' libraries to print descriptive statistics
+# Descriptive statistics for a quantitative variable (e.g., year)
+summary(fifaworld$Year)
+
+# Descriptive statistics for a categorical variable (e.g., stadium name)
+table(fifaworld$Stadium)  # Frequency counts
+prop.table(table(fifaworld$Stadium))  # Proportions
+
+# Loaded 'dplyr' library to perform normalization scale
+# Normalize the "GoalsScored" variable
+fifaworld$Year_Normalized <- scale(fifaworld$Year)
+
+# Installed 'ggplot2' library to print and view the scatter plot between year and attendace  
+# Select the quantitative variables for the scatterplot
+Year <- fifaworld$Year_Normalized
+attendance <- fifaworld$Attendance
+
+# Create the scatterplot
+# Load the ggplot2 package
+library(ggplot2)
+scatterplot <- ggplot(data = fifaworld, aes(x = Year_Normalized, y = attendance)) +
+  geom_point() +  # Add points for the scatterplot
+  labs(x = "Year", y = "Attendance", title = "Scatterplot of Year vs. Attendance")
+
+# Display the scatterplot
+print(scatterplot)
+
+
+
+
+```
+
+
+
+
